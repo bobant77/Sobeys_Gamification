@@ -16,20 +16,6 @@ const nextConfig: NextConfig = {
   env: {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
-  // Add these experimental options for Tailwind v4 compatibility
-  experimental: {
-    optimizeCss: false, // Disable Next.js's built-in CSS optimization
-  },
-  webpack: (config, { isServer }) => {
-    if (process.env.ANALYZE) {
-      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-      config.plugins.push(new BundleAnalyzerPlugin({
-        analyzerMode: 'static',
-        openAnalyzer: false,
-      }));
-    }
-    return config;
-  },
   async headers() {
     return [
       {
