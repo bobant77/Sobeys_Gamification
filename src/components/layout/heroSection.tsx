@@ -146,53 +146,20 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
                     {/* Left Side - Content (First on mobile) */}
                     <motion.div className="text-white space-y-6 2xl:space-y-8 order-1" variants={itemVariants}>
                         <motion.div className="space-y-3 2xl:space-y-4" variants={itemVariants}>
-                            <motion.h1
-                                className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl font-black leading-tight text-center lg:text-left"
-                                initial={{ opacity: 0, y: 100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{
-                                    duration: 0.8,
-                                    delay: 0.2,
-                                    type: "spring",
-                                    stiffness: 100
-                                }}
-                            >
-                                <motion.span
-                                    className="bg-white bg-clip-text text-transparent"
-                                    animate={{
-                                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                                    }}
-                                    transition={{
-                                        duration: 3,
-                                        repeat: Infinity,
-                                        ease: "linear"
-                                    }}
-                                    style={{ backgroundSize: "200% 200%" }}
-                                >
-                                    GROCERY
+                            <motion.h1 className="text-3xl  md:text-4xl lg:text-6xl xl:text-6xl 2xl:text-7xl font-black leading-tight text-center lg:text-left">
+                                <motion.span className="bg-white bg-clip-text text-transparent inline lg:block">
+                                    GROCERY{" "}
                                 </motion.span>
-                                <br />
-                                <motion.span
-                                    className="text-white"
-                                    initial={{ opacity: 0, x: -50 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.5, duration: 0.6 }}
-                                >
-                                    CHALLENGE
+                                <motion.span className="text-white inline lg:block">
+                                    CHALLENGE{" "}
                                 </motion.span>
-                                <br />
-                                <motion.span
-                                    className="bg-white bg-clip-text text-transparent"
-                                    initial={{ opacity: 0, x: 50 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.8, duration: 0.6 }}
-                                >
+                                <motion.span className="bg-white bg-clip-text text-transparent inline lg:block">
                                     ARENA
                                 </motion.span>
                             </motion.h1>
 
                             <motion.div
-                                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-2 sm:space-y-0 sm:space-x-2 lg:space-x-3 2xl:space-x-4"
+                                className="flex flex-wrap items-center justify-center lg:justify-start gap-2 lg:gap-3 2xl:gap-4"
                                 variants={itemVariants}
                             >
                                 <span className="text-lg md:text-xl lg:text-2xl 2xl:text-3xl font-bold text-gray-300">Win up to</span>

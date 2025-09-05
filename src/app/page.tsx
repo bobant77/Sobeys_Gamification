@@ -15,18 +15,29 @@ export const metadata: Metadata = {
   description: 'Your description',
 }
 
-
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-       <HeroSection id="hero" />
-       <HowToPlaySection id="how-to-play" />
-       <PrizesSection id="pricing" />
-       <BrandsSeparatorSection id="brands" /> 
-       <FAQSection id="faq" />
-       <FooterSection id="footer" />
-       <ScrollToTopButton /> 
+      <div className="scroll-snap-section">
+        <HeroSection id="hero" />
+      </div>
+      <div className="scroll-snap-section">
+        <HowToPlaySection id="how-to-play" />
+      </div>
+      <div className="scroll-snap-section">
+        <PrizesSection id="pricing" />
+      </div>
+      <div className="scroll-snap-section">
+        <BrandsSeparatorSection id="brands" />
+      </div>
+      <div className="scroll-snap-section">
+        <FAQSection id="faq" />
+      </div>
+      <div className="scroll-snap-section">
+        <FooterSection id="footer" />
+      </div>
+      <ScrollToTopButton /> 
     </div>
   );
 }
