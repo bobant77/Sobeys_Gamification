@@ -26,42 +26,42 @@ const FAQSection = ({ id = "faq" }: { id?: string })  => {
     {
       icon: <HelpCircle className="w-4 h-4 md:w-5 md:h-5" />,
       question: "What is the Grocery Giveaways contest?",
-      answer: "Grocery Giveaways is a challenge-based contest that customers can participate in. To participate you must download the Sobeys, Safeway, Foodland and/or FreshCo app, create an account and link your Scene+ card."
+      answer: "Grocery Giveaways is a challenge-based contest that customers can participate in. To participate you must download the apps."
     },
     {
       icon: <Gift className="w-4 h-4 md:w-5 md:h-5" />,
       question: "What are the prizes for this contest?",
-      answer: "We offer incredible prizes including weekly grocery gift cards worth up to $500, monthly grand prizes of $1,000 grocery credits, and special seasonal prizes. All winners are selected randomly from eligible participants who complete the required challenges."
+      answer: "We offer incredible prizes including weekly grocery gift cards worth up to $500."
     },
     {
       icon: <ShoppingCart className="w-4 h-4 md:w-5 md:h-5" />,
       question: "Can I play this game without downloading the app?",
-      answer: "No, you must download one of our participating apps (Sobeys, Safeway, Foodland, or FreshCo) to participate. The app is required to track your challenges, collect chips, and manage your contest entries."
+      answer: "No, you must download one of our participating apps (Sobeys, Safeway, Foodland, or FreshCo) to participate. "
     },
     {
       icon: <Trophy className="w-4 h-4 md:w-5 md:h-5" />,
       question: "Can I play this game in more than one App?",
-      answer: "Yes! You can download and participate through multiple participating apps. However, your Scene+ card must be linked across all apps, and prizes are awarded per Scene+ account, not per app."
+      answer: "Yes! You can download and participate through multiple participating apps."
     },
     {
       icon: <Gift className="w-4 h-4 md:w-5 md:h-5" />,
       question: "What are Chips?",
-      answer: "Chips are digital tokens you earn by completing shopping challenges and activities within the app. Each chip represents an entry into our contests and giveaways. The more chips you collect, the better your chances of winning!"
+      answer: "Chips are digital tokens you earn by completing shopping challenges and activities within the app. !"
     },
     {
       icon: <Plus className="w-4 h-4 md:w-5 md:h-5" />,
       question: "How do I collect Grocery Giveaways Chips?",
-      answer: "Collect chips by completing weekly shopping challenges, making qualifying purchases with your Scene+ card, participating in bonus activities, and engaging with special promotions. Check your app regularly for new chip-earning opportunities!"
+      answer: "Collect chips by completing weekly shopping challenges, making qualifying purchases with your Scene+ card, participating in bonus activities!"
     },
     {
       icon: <HelpCircle className="w-4 h-4 md:w-5 md:h-5" />,
       question: "How can I complete a challenge?",
-      answer: "Challenges vary but typically involve purchasing specific products, spending minimum amounts, or shopping in certain categories. Simply shop as instructed, ensure your Scene+ card is scanned, and the challenge will auto-complete within 24-48 hours."
+      answer: "Challenges vary but typically involve purchasing specific products, spending minimum amounts."
     },
     {
       icon: <Trophy className="w-4 h-4 md:w-5 md:h-5" />,
       question: "What happens to my Chips when the program ends?",
-      answer: "All accumulated chips will be entered into the final grand prize draw. Any remaining chips after the contest period will expire, so make sure to participate actively while the contest is running."
+      answer: "All accumulated chips will be entered into the final grand prize draw. Any remaining chips after the contest period will expire."
     }
   ];
 

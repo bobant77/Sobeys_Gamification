@@ -65,12 +65,13 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
         <motion.section
             ref={heroRef}
             id={id}
-              className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900 via-green-800 to-emerald-800"
-            style={{
+            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900 via-green-800 to-emerald-800"
+               style={{
                 background: `
-                    radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.3) 0%, transparent 50%),
-                    linear-gradient(135deg, #064e3b 0%, #065f46 25%, #047857 50%, #059669 75%, #10b981 100%)
+                    radial-gradient(ellipse at top left, rgba(0, 61, 42, 0.8) 0%, transparent 70%),
+                    radial-gradient(ellipse at top right, rgba(16, 185, 129, 0.3) 0%, transparent 70%),
+                    radial-gradient(ellipse at bottom, rgba(0, 61, 42, 0.6) 0%, transparent 70%),
+                    linear-gradient(135deg, #003d2a 0%, #064e3b 25%, #047857 50%, #059669 75%, #10b981 100%)
                 `
             }}
         >
@@ -273,6 +274,39 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
 
                                 <span className="text-base lg:text-lg relative z-10">Start Playing</span>
                             </motion.button>
+                            <motion.button
+                                className="group relative bg-transparent border-2 border-yellow-400 text-white hover:text-orange px-6 py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 rounded-2xl font-bold text-base lg:text-lg 2xl:text-xl overflow-hidden"
+                                whileHover={{
+                                    scale: 1.05,
+                                    borderColor: "#8b5cf6",
+                                    boxShadow: "0 20px 40px rgba(139, 92, 246, 0.4)"
+                                }}
+                                whileTap={{ scale: 0.95 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                            >
+                                <motion.div
+                                    className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500"
+                                    initial={{ opacity: 0 }}
+                                    whileHover={{ opacity: 1 }}
+                                />
+                                <div className="flex items-center space-x-2 lg:space-x-3 2xl:space-x-4 relative z-10">
+                                    <motion.div
+                                        animate={{
+                                            y: [0, -5, 0],
+                                            rotateY: [0, 180, 360]
+                                        }}
+                                        transition={{
+                                            duration: 2,
+                                            repeat: Infinity,
+                                            ease: [0.25, 0.1, 0.25, 1]
+                                        }}
+                                    >
+                                        <Trophy className="w-5 h-5 lg:w-6 lg:h-6 2xl:w-7 2xl:h-7" />
+                                    </motion.div>
+                                    <span>View Scorecard</span>
+                                </div>
+                            </motion.button>
+
 
 
                         </motion.div>

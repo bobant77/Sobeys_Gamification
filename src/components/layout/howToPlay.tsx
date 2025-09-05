@@ -63,7 +63,7 @@ const stores = [
     }
 ]
 
-const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
+const HowToPlaySection = ({ id = "faq" }: { id?: string }) => {
     const [ref, inView] = useIntersectionObserver({
         threshold: 0.2,
         triggerOnce: true
@@ -73,42 +73,42 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
     const [particlePositions, setParticlePositions] = useState<Array<{left: string, top: string}>>([])
 
     useEffect(() => {
-    const positions = Array.from({ length: 15 }, () => ({
-        left: `${10 + Math.random() * 80}%`,
-        top: `${10 + Math.random() * 80}%`,
-    }))
-    setParticlePositions(positions)
-}, [])
+        const positions = Array.from({ length: 15 }, () => ({
+            left: `${10 + Math.random() * 80}%`,
+            top: `${10 + Math.random() * 80}%`,
+        }))
+        setParticlePositions(positions)
+    }, [])
 
     return (
         <section 
-           className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-50 relative overflow-hidden py-8 px-4"
+            className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-50 relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-8 px-4 sm:px-6 md:px-8"
             ref={ref}
             id={id}
         >
-            {/* Enhanced background elements */}
+            {/* Enhanced background elements - scaled for mobile */}
             <div className="absolute inset-0">
-                {/* Animated gradient orbs */}
+                {/* Animated gradient orbs - responsive sizes */}
                 <motion.div 
-                    className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-blue-200/40 to-purple-200/40 rounded-full blur-3xl"
+                    className="absolute top-5 left-5 sm:top-10 sm:left-10 w-20 h-20 sm:w-32 sm:h-32 bg-gradient-to-r from-blue-200/40 to-purple-200/40 rounded-full blur-3xl"
                     animate={{ 
-                        x: [0, 100, 0],
-                        y: [0, -50, 0],
+                        x: [0, 50, 0], // Reduced movement for mobile
+                        y: [0, -25, 0],
                         scale: [1, 1.2, 1]
                     }}
                     transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
                 />
                 <motion.div 
-                    className="absolute bottom-10 right-10 w-40 h-40 bg-gradient-to-r from-green-200/40 to-emerald-200/40 rounded-full blur-3xl"
+                    className="absolute bottom-5 right-5 sm:bottom-10 sm:right-10 w-24 h-24 sm:w-40 sm:h-40 bg-gradient-to-r from-green-200/40 to-emerald-200/40 rounded-full blur-3xl"
                     animate={{ 
-                        x: [0, -80, 0],
-                        y: [0, 40, 0],
+                        x: [0, -40, 0], // Reduced movement for mobile
+                        y: [0, 20, 0],
                         scale: [1, 0.8, 1]
                     }}
                     transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
                 />
                 <motion.div 
-                    className="absolute top-1/2 left-1/3 w-24 h-24 bg-gradient-to-r from-pink-200/30 to-rose-200/30 rounded-full blur-3xl"
+                    className="absolute top-1/2 left-1/3 w-16 h-16 sm:w-24 sm:h-24 bg-gradient-to-r from-pink-200/30 to-rose-200/30 rounded-full blur-3xl"
                     animate={{ 
                         rotate: [0, 360],
                         scale: [1, 1.3, 1]
@@ -119,21 +119,21 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
 
             {/* Subtle grid pattern */}
             <div className="absolute inset-0 opacity-[0.03]">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:2rem_2rem]"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:1rem_1rem] sm:bg-[size:2rem_2rem]"></div>
             </div>
 
-            {/* Floating particles */}
+            {/* Floating particles - responsive */}
             {particlePositions?.map((position, i) => (
                 <motion.div
                     key={i}
-                    className="absolute w-1.5 h-1.5 rounded-full bg-gradient-to-r from-emerald-300/60 to-blue-300/60"
+                    className="absolute w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-gradient-to-r from-emerald-300/60 to-blue-300/60"
                     style={{
-                         left: position.left,
-            top: position.top,
+                        left: position.left,
+                        top: position.top,
                     }}
                     animate={{
-                        y: [0, -20, 0],
-                        x: [0, Math.sin(i) * 10, 0],
+                        y: [0, -10, 0], // Reduced movement for mobile
+                        x: [0, Math.sin(i) * 5, 0],
                         opacity: [0.3, 0.8, 0.3],
                         scale: [0.5, 1, 0.5],
                     }}
@@ -147,20 +147,20 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
             ))}
 
             <div className="max-w-7xl mx-auto relative z-10 w-full">
-                {/* Responsive layout: stacks on mobile, side by side on larger screens */}
-                <div className="flex flex-col xl:flex-row gap-8 lg:gap-12 xl:gap-16 items-center justify-center min-h-[85vh] max-h-screen">
+                {/* Fully responsive layout */}
+                <div className="flex flex-col lg:flex-row gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-center justify-center min-h-[80vh] sm:min-h-[85vh]">
                     
                     {/* Left Side - Steps */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={inView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.8 }}
-                        className="w-full xl:w-2/5 max-w-md xl:max-w-none"
+                        className="w-full lg:w-2/5 max-w-lg lg:max-w-none"
                     >
                         {/* Header */}
-                        <div className="mb-6 lg:mb-8 text-center xl:text-left">
+                        <div className="mb-6 sm:mb-8 text-center lg:text-left">
                             <motion.div
-                                className="inline-flex items-center bg-gradient-to-r from-green-100 to-emerald-100 border border-green-200/50 rounded-full px-4 py-2 mb-4 shadow-sm"
+                                className="inline-flex items-center bg-gradient-to-r from-green-100 to-emerald-100 border border-green-200/50 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 mb-3 sm:mb-4 shadow-sm"
                                 animate={{
                                     boxShadow: [
                                         "0 2px 10px rgba(34, 197, 94, 0.1)",
@@ -174,13 +174,13 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                                     animate={{ rotate: [0, 360] }}
                                     transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                                 >
-                                    <Sparkles className="w-4 h-4 mr-2 text-green-600" />
+                                    <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-green-600" />
                                 </motion.div>
-                                <span className="text-sm font-bold text-green-700">3 Simple Steps</span>
+                                <span className="text-xs sm:text-sm font-bold text-green-700">3 Simple Steps</span>
                             </motion.div>
                             
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl 2xl:text-5xl font-black text-gray-900 mb-3 lg:mb-4 leading-tight">
-                                How to{' '}
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-black text-gray-900 mb-2 sm:mb-3 md:mb-4 leading-tight">
+                                How to Play &
                                 <motion.span 
                                     className="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-600 bg-clip-text text-transparent"
                                     animate={{
@@ -193,18 +193,18 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                                     }}
                                     style={{ backgroundSize: "200% 200%" }}
                                 >
-                                    Play & Win
+                                     Win
                                 </motion.span>
                             </h2>
                             
-                            <p className="text-base lg:text-lg xl:text-base 2xl:text-lg text-gray-600 font-medium">
+                            <p className="text-sm sm:text-base md:text-lg lg:text-base xl:text-lg text-gray-600 font-medium">
                                 Turn grocery shopping into an exciting{' '}
                                 <span className="text-emerald-600 font-bold">winning adventure</span>
                             </p>
                         </div>
 
                         {/* Steps */}
-                        <div className="space-y-3 lg:space-y-4 mb-6 lg:mb-8">
+                        <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                             {steps.map((step, index) => {
                                 const Icon = step.icon
                                 const isHovered = hoveredStep === step.id
@@ -220,7 +220,7 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                                         onHoverEnd={() => setHoveredStep(null)}
                                         whileHover={{ scale: 1.02, x: 5 }}
                                     >
-                                        <div className="flex items-center p-4 lg:p-5 rounded-2xl bg-white shadow-lg hover:shadow-xl border border-gray-100 hover:border-gray-200 transition-all duration-300 relative overflow-hidden">
+                                        <div className="flex items-center p-3 sm:p-4 md:p-5 rounded-2xl bg-white shadow-lg hover:shadow-xl border border-gray-100 hover:border-gray-200 transition-all duration-300 relative overflow-hidden">
                                             
                                             {/* Hover background effect */}
                                             <motion.div
@@ -229,20 +229,20 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                                                 transition={{ duration: 0.3 }}
                                             />
 
-                                            {/* Step icon container */}
+                                            {/* Step icon container - responsive sizes */}
                                             <motion.div 
-                                                className={`relative flex-shrink-0 w-14 h-14 lg:w-16 lg:h-16 rounded-xl flex items-center justify-center mr-4 lg:mr-5 bg-gradient-to-r ${isHovered ? step.hoverGradient : step.gradient} shadow-lg`}
+                                                className={`relative flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl flex items-center justify-center mr-3 sm:mr-4 md:mr-5 bg-gradient-to-r ${isHovered ? step.hoverGradient : step.gradient} shadow-lg`}
                                                 animate={{
                                                     scale: isHovered ? 1.1 : 1,
                                                     rotate: isHovered ? [0, 5, -5, 0] : 0
                                                 }}
                                                 transition={{ duration: 0.3 }}
                                             >
-                                                <Icon className="w-7 h-7 lg:w-8 lg:h-8 text-white" />
+                                                <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-white" />
                                                 
-                                                {/* Step number badge */}
+                                                {/* Step number badge - responsive */}
                                                 <motion.div 
-                                                    className="absolute -top-2 -right-2 w-6 h-6 lg:w-7 lg:h-7 rounded-full flex items-center justify-center text-xs lg:text-sm font-bold bg-white text-gray-900 shadow-md border-2 border-white"
+                                                    className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold bg-white text-gray-900 shadow-md border-2 border-white"
                                                     animate={{
                                                         scale: isHovered ? 1.2 : 1,
                                                         rotate: isHovered ? 360 : 0
@@ -280,10 +280,10 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                                                 )}
                                             </motion.div>
 
-                                            {/* Content */}
+                                            {/* Content - responsive text */}
                                             <div className="flex-grow relative z-10">
                                                 <motion.h3 
-                                                    className="text-lg lg:text-xl font-bold text-gray-900 mb-1"
+                                                    className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-1"
                                                     animate={{
                                                         color: isHovered ? "#059669" : "#111827"
                                                     }}
@@ -292,7 +292,7 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                                                     {step.title}
                                                 </motion.h3>
                                                 <motion.p 
-                                                    className="text-sm lg:text-base text-gray-600"
+                                                    className="text-xs sm:text-sm md:text-base text-gray-600"
                                                     animate={{
                                                         color: isHovered ? "#047857" : "#4B5563"
                                                     }}
@@ -305,7 +305,7 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
 
                                         {/* Active indicator line */}
                                         <motion.div
-                                            className={`absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b ${step.gradient} rounded-r-full`}
+                                            className={`absolute left-0 top-0 bottom-0 w-1 sm:w-1.5 bg-gradient-to-b ${step.gradient} rounded-r-full`}
                                             animate={{
                                                 scaleY: isHovered ? 1 : 0.7,
                                                 opacity: isHovered ? 1 : 0.7
@@ -317,9 +317,9 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                             })}
                         </div>
 
-                        {/* CTA Button */}
+                        {/* CTA Button - responsive */}
                         <motion.button 
-                            className="w-full sm:w-auto group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-4 px-8 lg:px-10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-3 overflow-hidden mx-auto xl:mx-0"
+                            className="w-full sm:w-auto group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-3 px-6 sm:py-4 sm:px-8 md:px-10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2 sm:space-x-3 overflow-hidden mx-auto lg:mx-0"
                             initial={{ opacity: 0, y: 20 }}
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.5, delay: 0.4 }}
@@ -333,30 +333,29 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                             <motion.div
                                 className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                             />
-                                <Play className="w-5 h-5 lg:w-6 lg:h-6 relative z-10" />
-
-                            <span className="text-base lg:text-lg relative z-10">Start Playing</span>
+                            <Play className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 relative z-10" />
+                            <span className="text-sm sm:text-base md:text-lg relative z-10">Start Playing</span>
                             <motion.div
                                 animate={{ x: [0, 5, 0] }}
                                 transition={{ duration: 1, repeat: Infinity }}
                             >
-                                <Zap className="w-5 h-5 lg:w-6 lg:h-6 relative z-10" />
+                                <Zap className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 relative z-10" />
                             </motion.div>
                         </motion.button>
                     </motion.div>
 
-                    {/* Vertical divider for larger screens */}
-                    <div className="hidden xl:block w-px h-80 2xl:h-96 bg-gradient-to-b from-transparent via-gray-300 to-transparent opacity-30"></div>
+                    {/* Horizontal divider for mobile/tablet, vertical for desktop */}
+                    <div className="w-full h-px lg:w-px lg:h-80 xl:h-96 bg-gradient-to-r lg:bg-gradient-to-b from-transparent via-gray-300 to-transparent opacity-30"></div>
 
                     {/* Right Side - Store Display */}
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         animate={inView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="w-full xl:w-2/5 max-w-md xl:max-w-none relative"
+                        className="w-full lg:w-2/5 max-w-lg lg:max-w-none relative"
                     >
                         <motion.div 
-                            className="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 rounded-3xl p-6 lg:p-8 shadow-2xl relative overflow-hidden"
+                            className="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl relative overflow-hidden"
                             animate={{
                                 boxShadow: [
                                     "0 25px 50px rgba(0, 0, 0, 0.3)",
@@ -370,10 +369,9 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDYwIDAgTCAwIDAgMCA2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-10" />
                             
                             <div className="relative z-10">
-                                {/* Header */}
-                                <div className="text-center mb-6 lg:mb-8">
-                                   
-                                    <h3 className="text-xl lg:text-2xl xl:text-xl 2xl:text-2xl font-bold text-white mb-2">
+                                {/* Header - responsive text */}
+                                <div className="text-center mb-4 sm:mb-6 md:mb-8">
+                                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-xl xl:text-2xl font-bold text-white mb-2">
                                         Available at Your{' '}
                                         <motion.span 
                                             className="bg-gradient-to-r from-green-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent"
@@ -390,11 +388,10 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                                             Favorite Stores
                                         </motion.span>
                                     </h3>
-                                   
                                 </div>
 
-                                {/* Store grid */}
-                                <div className="grid grid-cols-2 gap-3 lg:gap-4 mb-6">
+                                {/* Store grid - responsive grid */}
+                                <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
                                     {stores.map((store, index) => (
                                         <motion.div 
                                             key={store.name}
@@ -414,29 +411,29 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                                                 zIndex: 10
                                             }}
                                         >
-                                            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-4 lg:p-5 text-center hover:bg-white/20 transition-all duration-500 relative overflow-hidden h-full flex flex-col">
+                                            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 text-center hover:bg-white/20 transition-all duration-500 relative overflow-hidden h-full flex flex-col">
                                                 
                                                 {/* Hover glow effect */}
                                                 <motion.div
                                                     className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                                                 />
 
-                                                {/* Store logo container */}
-                                                <div className={`flex items-center justify-center mb-3 h-12 lg:h-14 ${store.name === 'Foodland' ? 'p-2' : ''} ${store.name === 'FreshCo' ? 'bg-yellow-400 rounded-lg' : ''}`}>
+                                                {/* Store logo container - responsive heights */}
+                                                <div className={`flex items-center justify-center mb-2 sm:mb-3 h-8 sm:h-10 md:h-12 lg:h-14 ${store.name === 'Foodland' ? 'p-1 sm:p-2' : ''} ${store.name === 'FreshCo' ? 'bg-yellow-400 rounded-lg' : ''}`}>
                                                     <motion.img 
                                                         src={store.logo} 
                                                         alt={store.name}
-                                                        className={`max-h-10 lg:max-h-12 ${store.name === 'Foodland' ? 'h-6 lg:h-8' : 'h-10 lg:h-12'} object-contain`}
+                                                        className={`max-h-6 sm:max-h-8 md:max-h-10 lg:max-h-12 ${store.name === 'Foodland' ? 'h-4 sm:h-6 md:h-8' : 'h-6 sm:h-8 md:h-10 lg:h-12'} object-contain`}
                                                         whileHover={{ scale: 1.1 }}
                                                         transition={{ duration: 0.3 }}
                                                     />
                                                 </div>
                                                 
-                                                <h4 className="text-white font-semibold text-sm lg:text-base mb-3 mt-auto">{store.name}</h4>
+                                                <h4 className="text-white font-semibold text-xs sm:text-sm md:text-base mb-2 sm:mb-3 mt-auto">{store.name}</h4>
                                                 
-                                                {/* Download button */}
+                                                {/* Download button - responsive */}
                                                 <motion.button 
-                                                    className={`w-full ${store.bgColor} ${store.textColor} font-semibold py-2.5 px-3 rounded-xl text-xs lg:text-sm hover:shadow-lg transition-all duration-300 mt-auto relative overflow-hidden`}
+                                                    className={`w-full ${store.bgColor} ${store.textColor} font-semibold py-2 sm:py-2.5 px-2 sm:px-3 rounded-lg sm:rounded-xl text-xs sm:text-sm hover:shadow-lg transition-all duration-300 mt-auto relative overflow-hidden`}
                                                     whileHover={{ 
                                                         scale: 1.05,
                                                         y: -2,
@@ -461,16 +458,16 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
 
                                             {/* Enhanced glow effect on hover */}
                                             <motion.div
-                                                className="absolute inset-0 bg-gradient-to-br from-emerald-400/10 to-blue-400/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm"
+                                                className="absolute inset-0 bg-gradient-to-br from-emerald-400/10 to-blue-400/10 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm"
                                             />
                                         </motion.div>
                                     ))}
                                 </div>
 
-                                {/* Sync badge */}
+                                {/* Sync badge - responsive */}
                                 <div className="text-center">
                                     <motion.div 
-                                        className="inline-flex items-center bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-full px-4 py-2.5 lg:px-5 lg:py-3 backdrop-blur-lg"
+                                        className="inline-flex items-center bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-full px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 backdrop-blur-lg"
                                         animate={{
                                             boxShadow: [
                                                 "0 0 20px rgba(34, 197, 94, 0.2)",
@@ -480,17 +477,16 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                                         }}
                                         transition={{ duration: 4, repeat: Infinity }}
                                     >
-                                            <Star className="w-3 h-3 lg:w-4 lg:h-4 text-green-400 mr-2" />
-
-                                        <span className="text-green-300 font-medium text-xs lg:text-sm">Syncs with Challenge Arena</span>
+                                        <Star className="w-3 h-3 sm:w-4 sm:h-4 text-green-400 mr-2" />
+                                        <span className="text-green-300 font-medium text-xs sm:text-sm">Syncs with Challenge Arena</span>
                                     </motion.div>
                                 </div>
                             </div>
                         </motion.div>
 
-                        {/* Floating elements - positioned better for all screen sizes */}
+                        {/* Floating elements - responsive positioning and sizes */}
                         <motion.div 
-                            className="absolute -top-4 -right-4 w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg z-20"
+                            className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg z-20"
                             animate={{ 
                                 rotate: [0, 360],
                                 y: [0, -10, 0]
@@ -500,11 +496,11 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                                 y: { duration: 3, repeat: Infinity, ease: "easeInOut" }
                             }}
                         >
-                            <Gift className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
+                            <Gift className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
                         </motion.div>
 
                         <motion.div 
-                            className="absolute -bottom-3 -left-3 w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center shadow-lg z-20"
+                            className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center shadow-lg z-20"
                             animate={{ 
                                 y: [0, -15, 0],
                                 scale: [1, 1.2, 1],
@@ -516,7 +512,7 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
                                 ease: "easeInOut" 
                             }}
                         >
-                            <Star className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
+                            <Star className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-white" />
                         </motion.div>
                     </motion.div>
                 </div>

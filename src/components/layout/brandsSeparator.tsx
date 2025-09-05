@@ -355,7 +355,7 @@ const BrandsSeparatorSection = ({ id = "brands" }: { id?: string }) => {
 
 
                     <motion.div
-                        className="w-30 h-0.5 bg-gradient-to-r from-green-500 to-emerald-400 mx-auto rounded-full"
+                        className="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-400 mx-auto rounded-full"
                         variants={textVariants}
                     />
                 </motion.div>
