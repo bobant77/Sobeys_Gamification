@@ -63,15 +63,7 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
         <motion.section
             ref={heroRef}
             id={id}
-            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900 via-green-700 to-green-900 pt-24 md:pt-28 lg:pt-20"
-            // style={{
-            //     background: `
-            //         radial-gradient(ellipse at top left, rgba(0, 61, 42, 0.8) 0%, transparent 70%),
-            //         radial-gradient(ellipse at top right, rgba(16, 185, 129, 0.3) 0%, transparent 70%),
-            //         radial-gradient(ellipse at bottom, rgba(0, 61, 42, 0.6) 0%, transparent 70%),
-            //         linear-gradient(135deg, #003d2a 0%, #064e3b 25%, #047857 50%, #059669 75%, #10b981 100%)
-            //     `
-            // }}
+            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-800 via-green-600 to-green-800 pt-24 md:pt-28 lg:pt-20"
         >
             {/* Enhanced Background Elements */}
             <motion.div className="absolute inset-0">
@@ -144,7 +136,7 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
             </motion.div>
 
             <motion.div
-                className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 relative z-10 h-full flex items-center"
+                className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-14 2xl:px-12 relative z-10 h-full flex items-center"
                 ref={ref}
                 variants={containerVariants}
                 initial="hidden"
@@ -270,7 +262,7 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
                                 <span className="text-base lg:text-lg relative z-10">Start Playing</span>
                             </motion.button>
                             <motion.button
-                                className="group relative bg-transparent border-2 border-green-800 text-white hover:text-orange px-6 py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 rounded-2xl font-bold text-base lg:text-lg 2xl:text-xl overflow-hidden"
+                                className="group relative bg-transparent border-2 border-yellow-600 text-white hover:text-orange px-6 py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 rounded-2xl font-bold text-base lg:text-lg 2xl:text-xl overflow-hidden"
                                 whileHover={{
                                     scale: 1.05,
                                 }}
@@ -278,7 +270,7 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
                                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                             >
                                 <motion.div
-                                    className="absolute inset-0 bg-gradient-to-r from-green-800 to-green-900"
+                                    className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-900"
                                     initial={{ opacity: 0 }}
                                     whileHover={{ opacity: 1 }}
                                 />
