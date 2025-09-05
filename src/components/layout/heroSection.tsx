@@ -63,19 +63,18 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
         <motion.section
             ref={heroRef}
             id={id}
-            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900 via-green-800 to-emerald-800 pt-24 md:pt-28 lg:pt-20"
-            style={{
-                background: `
-                    radial-gradient(ellipse at top left, rgba(0, 61, 42, 0.8) 0%, transparent 70%),
-                    radial-gradient(ellipse at top right, rgba(16, 185, 129, 0.3) 0%, transparent 70%),
-                    radial-gradient(ellipse at bottom, rgba(0, 61, 42, 0.6) 0%, transparent 70%),
-                    linear-gradient(135deg, #003d2a 0%, #064e3b 25%, #047857 50%, #059669 75%, #10b981 100%)
-                `
-            }}
+            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900 via-green-700 to-green-900 pt-24 md:pt-28 lg:pt-20"
+            // style={{
+            //     background: `
+            //         radial-gradient(ellipse at top left, rgba(0, 61, 42, 0.8) 0%, transparent 70%),
+            //         radial-gradient(ellipse at top right, rgba(16, 185, 129, 0.3) 0%, transparent 70%),
+            //         radial-gradient(ellipse at bottom, rgba(0, 61, 42, 0.6) 0%, transparent 70%),
+            //         linear-gradient(135deg, #003d2a 0%, #064e3b 25%, #047857 50%, #059669 75%, #10b981 100%)
+            //     `
+            // }}
         >
             {/* Enhanced Background Elements */}
             <motion.div className="absolute inset-0">
-                {/* Animated gradient orbs */}
                 <motion.div
                     className="absolute top-8 left-8 w-16 h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full opacity-20"
                     animate={{

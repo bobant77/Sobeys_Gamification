@@ -113,21 +113,6 @@ export function Header() {
                                     />
                                 </div>
 
-                                {/* Sparkles */}
-                                <motion.div
-                                    className="absolute -top-2 -right-2"
-                                    animate={{
-                                        rotate: [0, 360],
-                                        scale: [0.8, 1.2, 0.8]
-                                    }}
-                                    transition={{
-                                        duration: 3,
-                                        repeat: Infinity,
-                                        ease: [0.25, 0.1, 0.25, 1]
-                                    }}
-                                >
-                                    <Sparkles className="w-5 h-5 text-yellow-400" />
-                                </motion.div>
                             </motion.div>
                         </Link>
                     </motion.div>
