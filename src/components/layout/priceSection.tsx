@@ -13,8 +13,6 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
-
-
     const prizes = [
         {
             id: 1,
@@ -25,7 +23,6 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
             icon: Crown,
             gradient: "from-yellow-400 via-amber-500 to-orange-600",
             glowColor: "shadow-yellow-500/50",
-            //   bgPattern: "radial-gradient(circle at 30% 20%, rgba(255,215,0,0.3) 0%, transparent 50%)",
             description: "Ultimate grand prize experience"
         },
         {
@@ -37,7 +34,6 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
             icon: Coins,
             gradient: "from-emerald-400 via-teal-500 to-cyan-600",
             glowColor: "shadow-emerald-500/50",
-            //   bgPattern: "radial-gradient(circle at 70% 30%, rgba(16,185,129,0.3) 0%, transparent 50%)",
             description: "Boost your financial future"
         },
         {
@@ -49,7 +45,6 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
             icon: Star,
             gradient: "from-purple-400 via-violet-500 to-indigo-600",
             glowColor: "shadow-purple-500/50",
-            //   bgPattern: "radial-gradient(circle at 50% 80%, rgba(139,92,246,0.3) 0%, transparent 50%)",
             description: "Premium entertainment access"
         },
         {
@@ -61,7 +56,6 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
             icon: Gift,
             gradient: "from-pink-400 via-rose-500 to-red-600",
             glowColor: "shadow-pink-500/50",
-            //   bgPattern: "radial-gradient(circle at 20% 70%, rgba(236,72,153,0.3) 0%, transparent 50%)",
             description: "Transform your living space"
         },
     ];
@@ -77,24 +71,25 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
         }
     };
 
-const itemVariants = {
-    hidden: {
-        opacity: 0,
-        y: 30,
-        scale: 0.95
-    },
-    visible: {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        transition: {
-            type: "spring" as const,
-            damping: 25,
-            stiffness: 120,
-            duration: 0.6
+    const itemVariants = {
+        hidden: {
+            opacity: 0,
+            y: 30,
+            scale: 0.95
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                type: "spring" as const,
+                damping: 25,
+                stiffness: 120,
+                duration: 0.6
+            }
         }
-    }
-};
+    };
+
     const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
         if (!sectionRef.current) return;
 
@@ -110,9 +105,10 @@ const itemVariants = {
         <section
             ref={sectionRef}
             id={id}
-            className="min-h-screen py-6 sm:py-8 lg:py-16 relative overflow-hidden"
+            className="py-8 sm:py-12 lg:py-20 relative overflow-hidden flex items-center justify-center"
             style={{
-                background: 'radial-gradient(ellipse at center, rgb(248 250 252) 0%, rgb(241 245 249) 100%)'
+                background: 'radial-gradient(ellipse at center, rgb(248 250 252) 0%, rgb(241 245 249) 100%)',
+                minHeight: '100vh'
             }}
             onMouseMove={handleMouseMove}
         >
@@ -144,16 +140,16 @@ const itemVariants = {
                 />
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 relative z-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
                 {/* Header Section */}
                 <motion.div
-                    className="text-center mb-10 sm:mb-8 lg:mb-10 px-4 sm:px-6 lg:px-8"
+                    className="text-center mb-8 sm:mb-12 lg:mb-16"
                     initial={{ opacity: 0, y: -50 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                 >
                     <motion.h2
-                        className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-6"
+                        className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6"
                     >
                         <span className="bg-gradient-to-r from-gray-900 via-green-900 to-emerald-900 bg-clip-text text-transparent">
                             What can you
@@ -165,7 +161,7 @@ const itemVariants = {
                     </motion.h2>
 
                     <motion.p
-                        className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+                        className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed"
                         initial={{ opacity: 0 }}
                         animate={isInView ? { opacity: 1 } : {}}
                         transition={{ delay: 0.3, duration: 0.8 }}
@@ -177,7 +173,7 @@ const itemVariants = {
 
                 {/* Prizes Grid */}
                 <motion.div
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
@@ -200,7 +196,7 @@ const itemVariants = {
                                 <div className="relative h-full">
                                     {/* Glow Effect */}
                                     <motion.div
-                                        className={`absolute -inset-1 bg-gradient-to-r ${prize.gradient} rounded-3xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500`}
+                                        className={`absolute -inset-1 bg-gradient-to-r ${prize.gradient} rounded-2xl lg:rounded-3xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500`}
                                         animate={hoveredPrize === prize.id ? {
                                             scale: [1, 1.1, 1],
                                             opacity: [0.4, 0.6, 0.4]
@@ -210,15 +206,14 @@ const itemVariants = {
 
                                     {/* Main Card */}
                                     <div
-                                        className="relative bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 h-full border border-white/20 shadow-xl overflow-hidden transition-all duration-500 group-hover:shadow-2xl"
+                                        className="relative bg-white/90 backdrop-blur-xl rounded-xl lg:rounded-2xl p-4 sm:p-5 lg:p-6 h-full border border-white/20 shadow-xl overflow-hidden transition-all duration-500 group-hover:shadow-2xl"
                                         style={{
-                                            //   backgroundImage: prize.bgPattern,
-                                            minHeight: 'clamp(280px, 35vw, 400px)'
+                                            minHeight: '240px'
                                         }}
                                     >
                                         {/* Floating Elements */}
                                         <motion.div
-                                            className="absolute top-4 right-4 opacity-10"
+                                            className="absolute top-3 right-3 lg:top-4 lg:right-4 opacity-10"
                                             animate={{
                                                 rotate: [0, 360],
                                                 scale: [1, 1.1, 1]
@@ -229,19 +224,19 @@ const itemVariants = {
                                                 ease: "linear"
                                             }}
                                         >
-                                            <Trophy className="w-8 h-8 sm:w-12 sm:h-12" />
+                                            <Trophy className="w-6 h-6 lg:w-8 lg:h-8" />
                                         </motion.div>
 
                                         {/* Icon Container */}
                                         <motion.div
-                                            className={`w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-gradient-to-r ${prize.gradient} rounded-2xl sm:rounded-3xl flex items-center justify-center mb-4 sm:mb-6 relative overflow-hidden group-hover:shadow-lg ${prize.glowColor}`}
+                                            className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-r ${prize.gradient} rounded-xl lg:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 relative overflow-hidden group-hover:shadow-lg ${prize.glowColor}`}
                                             whileHover={{
                                                 rotate: [0, -10, 10, 0],
                                                 scale: 1.1
                                             }}
                                             transition={{ duration: 0.5 }}
                                         >
-                                            <IconComponent className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-white" />
+                                            <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
                                             <motion.div
                                                 className="absolute inset-0 bg-white/20 rounded-full"
                                                 animate={{
@@ -259,18 +254,18 @@ const itemVariants = {
                                         {/* Content */}
                                         <div className="relative z-10">
                                             <motion.div
-                                                className="mb-2 sm:mb-3"
+                                                className="mb-2"
                                                 initial={{ opacity: 0, x: -20 }}
                                                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                                                 transition={{ delay: 0.5 + index * 0.1 }}
                                             >
-                                                <div className={`inline-block px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-gradient-to-r ${prize.gradient} text-white shadow-sm`}>
+                                                <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${prize.gradient} text-white shadow-sm`}>
                                                     {prize.quantity}
                                                 </div>
                                             </motion.div>
 
                                             <motion.h3
-                                                className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-1 sm:mb-2 leading-tight"
+                                                className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-1 leading-tight"
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                                 transition={{ delay: 0.6 + index * 0.1 }}
@@ -279,7 +274,7 @@ const itemVariants = {
                                             </motion.h3>
 
                                             <motion.p
-                                                className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4"
+                                                className="text-sm text-gray-600 mb-2 sm:mb-3"
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                                 transition={{ delay: 0.7 + index * 0.1 }}
@@ -288,7 +283,7 @@ const itemVariants = {
                                             </motion.p>
 
                                             <motion.div
-                                                className={`text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r ${prize.gradient} bg-clip-text text-transparent mb-2 sm:mb-3`}
+                                                className={`text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r ${prize.gradient} bg-clip-text text-transparent mb-2`}
                                                 initial={{ opacity: 0, scale: 0.8 }}
                                                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                                                 transition={{ delay: 0.8 + index * 0.1, type: "spring" }}
@@ -308,7 +303,7 @@ const itemVariants = {
 
                                         {/* Hover Overlay */}
                                         <motion.div
-                                            className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl sm:rounded-3xl"
+                                            className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl lg:rounded-2xl"
                                             initial={false}
                                         />
                                     </div>

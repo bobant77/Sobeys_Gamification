@@ -31,12 +31,10 @@ const itemVariants = {
     }
 }
 
-
 const HeroSection = ({ id = "faq" }: { id?: string }) => {
     const [currentPrize, setCurrentPrize] = useState(0)
     const [particles, setParticles] = useState<Array<{ id: number, x: number, y: number, delay: number }>>([])
     const heroRef = useRef<HTMLElement>(null)
-
 
     const [ref, inView] = useIntersectionObserver({
         threshold: 0.1,
@@ -65,8 +63,8 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
         <motion.section
             ref={heroRef}
             id={id}
-            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900 via-green-800 to-emerald-800"
-               style={{
+            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900 via-green-800 to-emerald-800 pt-24 md:pt-28 lg:pt-20"
+            style={{
                 background: `
                     radial-gradient(ellipse at top left, rgba(0, 61, 42, 0.8) 0%, transparent 70%),
                     radial-gradient(ellipse at top right, rgba(16, 185, 129, 0.3) 0%, transparent 70%),
@@ -76,9 +74,7 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
             }}
         >
             {/* Enhanced Background Elements */}
-            <motion.div
-                className="absolute inset-0"
-            >
+            <motion.div className="absolute inset-0">
                 {/* Animated gradient orbs */}
                 <motion.div
                     className="absolute top-8 left-8 w-16 h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full opacity-20"
@@ -145,7 +141,7 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
                     />
                 ))}
 
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDYwIDAgTCAwIDAgMCA2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-20" />
+                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDYwIDAgTCAwIDAgMCA2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InUybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-20" />
             </motion.div>
 
             <motion.div
@@ -156,11 +152,11 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
                 animate={inView ? "visible" : "hidden"}
             >
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 2xl:gap-16 items-center w-full">
-                    {/* Left Side - Content */}
-                    <motion.div className="text-white space-y-6 2xl:space-y-8" variants={itemVariants}>
+                    {/* Left Side - Content (First on mobile) */}
+                    <motion.div className="text-white space-y-6 2xl:space-y-8 order-1" variants={itemVariants}>
                         <motion.div className="space-y-3 2xl:space-y-4" variants={itemVariants}>
                             <motion.h1
-                                className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl font-black leading-tight"
+                                className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl font-black leading-tight text-center lg:text-left"
                                 initial={{ opacity: 0, y: 100 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{
@@ -205,7 +201,7 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
                             </motion.h1>
 
                             <motion.div
-                                className="flex items-center space-x-2 lg:space-x-3 2xl:space-x-4"
+                                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-2 sm:space-y-0 sm:space-x-2 lg:space-x-3 2xl:space-x-4"
                                 variants={itemVariants}
                             >
                                 <span className="text-lg md:text-xl lg:text-2xl 2xl:text-3xl font-bold text-gray-300">Win up to</span>
@@ -244,7 +240,7 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
                         </motion.div>
 
                         <motion.p
-                            className="text-base md:text-lg lg:text-xl 2xl:text-2xl text-gray-300 leading-relaxed max-w-2xl"
+                            className="text-base md:text-lg lg:text-xl 2xl:text-2xl text-gray-300 leading-relaxed max-w-2xl text-center lg:text-left"
                             variants={itemVariants}
                         >
                             Complete weekly challenges, unlock exclusive rewards,
@@ -252,7 +248,7 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
                         </motion.p>
 
                         <motion.div
-                            className="flex flex-col sm:flex-row gap-3 lg:gap-4 2xl:gap-5"
+                            className="flex flex-col sm:flex-row gap-3 lg:gap-4 2xl:gap-5 justify-center lg:justify-start"
                             variants={itemVariants}
                         >
                             <motion.button
@@ -275,17 +271,15 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
                                 <span className="text-base lg:text-lg relative z-10">Start Playing</span>
                             </motion.button>
                             <motion.button
-                                className="group relative bg-transparent border-2 border-yellow-400 text-white hover:text-orange px-6 py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 rounded-2xl font-bold text-base lg:text-lg 2xl:text-xl overflow-hidden"
+                                className="group relative bg-transparent border-2 border-green-800 text-white hover:text-orange px-6 py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 rounded-2xl font-bold text-base lg:text-lg 2xl:text-xl overflow-hidden"
                                 whileHover={{
                                     scale: 1.05,
-                                    borderColor: "#8b5cf6",
-                                    boxShadow: "0 20px 40px rgba(139, 92, 246, 0.4)"
                                 }}
                                 whileTap={{ scale: 0.95 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                             >
                                 <motion.div
-                                    className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500"
+                                    className="absolute inset-0 bg-gradient-to-r from-green-800 to-green-900"
                                     initial={{ opacity: 0 }}
                                     whileHover={{ opacity: 1 }}
                                 />
@@ -306,15 +300,12 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
                                     <span>View Scorecard</span>
                                 </div>
                             </motion.button>
-
-
-
                         </motion.div>
                     </motion.div>
 
-                    {/* Right Side - Enhanced Phone Mockup */}
+                    {/* Right Side - Enhanced Phone Mockup (Second on mobile) */}
                     <motion.div
-                        className="relative lg:flex justify-center"
+                        className="relative lg:flex justify-center order-2 mt-6 lg:mt-0"
                         variants={itemVariants}
                     >
                         <Tilt
