@@ -32,7 +32,7 @@ const itemVariants = {
 }
 
 
-const HeroSection=({ id = "faq" }: { id?: string })=> {
+const HeroSection = ({ id = "faq" }: { id?: string }) => {
     const [currentPrize, setCurrentPrize] = useState(0)
     const [particles, setParticles] = useState<Array<{ id: number, x: number, y: number, delay: number }>>([])
     const heroRef = useRef<HTMLElement>(null)
@@ -65,7 +65,14 @@ const HeroSection=({ id = "faq" }: { id?: string })=> {
         <motion.section
             ref={heroRef}
             id={id}
-            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-700 via-green-900 to-green-900 py-12 lg:py-16"
+              className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900 via-green-800 to-emerald-800"
+            style={{
+                background: `
+                    radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.3) 0%, transparent 50%),
+                    linear-gradient(135deg, #064e3b 0%, #065f46 25%, #047857 50%, #059669 75%, #10b981 100%)
+                `
+            }}
         >
             {/* Enhanced Background Elements */}
             <motion.div
@@ -267,38 +274,7 @@ const HeroSection=({ id = "faq" }: { id?: string })=> {
                                 <span className="text-base lg:text-lg relative z-10">Start Playing</span>
                             </motion.button>
 
-                            {/* <motion.button
-                                className="group relative bg-transparent border-2 border-yellow-400 text-orange-300 hover:text-white px-6 py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 rounded-2xl font-bold text-base lg:text-lg 2xl:text-xl overflow-hidden"
-                                whileHover={{
-                                    scale: 1.05,
-                                    borderColor: "#8b5cf6",
-                                    boxShadow: "0 20px 40px rgba(139, 92, 246, 0.4)"
-                                }}
-                                whileTap={{ scale: 0.95 }}
-                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                            >
-                                <motion.div
-                                    className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500"
-                                    initial={{ opacity: 0 }}
-                                    whileHover={{ opacity: 1 }}
-                                />
-                                <div className="flex items-center space-x-2 lg:space-x-3 2xl:space-x-4 relative z-10 text-white ">
-                                    <motion.div
-                                        animate={{
-                                            y: [0, -5, 0],
-                                            rotateY: [0, 180, 360]
-                                        }}
-                                        transition={{
-                                            duration: 2,
-                                            repeat: Infinity,
-                                            ease: [0.25, 0.1, 0.25, 1]
-                                        }}
-                                    >
-                                        <Trophy className="w-5 h-5 lg:w-6 lg:h-6 2xl:w-7 2xl:h-7" />
-                                    </motion.div>
-                                    <span>View Scorecard</span>
-                                </div>
-                            </motion.button> */}
+
                         </motion.div>
                     </motion.div>
 
@@ -470,15 +446,29 @@ const HeroSection=({ id = "faq" }: { id?: string })=> {
 
                                 {/* Background Phone with enhanced animation */}
                                 <motion.div
-                                    className="absolute top-8 lg:top-12 2xl:top-16 -left-12 lg:-left-16 2xl:-left-20 w-52 h-[400px] lg:w-64 lg:h-[500px] 2xl:w-80 2xl:h-[600px] bg-gradient-to-b from-gray-700 to-gray-800 rounded-[2rem] lg:rounded-[2.5rem] 2xl:rounded-[3rem] p-1.5 lg:p-2 2xl:p-3 shadow-xl opacity-40 scale-90 transform -rotate-12"
+                                    className="absolute top-8 lg:top-12 2xl:top-16 -left-12 lg:-left-16 2xl:-left-20 w-52 h-[400px] lg:w-64 lg:h-[500px] 2xl:w-80 2xl:h-[600px] bg-gradient-to-b from-gray-700 to-gray-800 rounded-[2rem] lg:rounded-[2.5rem] 2xl:rounded-[3rem] p-1.5 lg:p-2 2xl:p-3 shadow-xl opacity-40"
                                     animate={{
+                                        scale: 0.9,
+                                        rotateZ: -12,
                                         rotateY: [-12, -8, -12],
                                         rotateX: [0, 2, 0]
                                     }}
                                     transition={{
-                                        duration: 4,
-                                        repeat: Infinity,
-                                        ease: [0.25, 0.1, 0.25, 1]
+                                        scale: { duration: 0 }, // Instant scale
+                                        rotateZ: { duration: 0 }, // Instant rotation
+                                        rotateY: {
+                                            duration: 4,
+                                            repeat: Infinity,
+                                            ease: [0.25, 0.1, 0.25, 1]
+                                        },
+                                        rotateX: {
+                                            duration: 4,
+                                            repeat: Infinity,
+                                            ease: [0.25, 0.1, 0.25, 1]
+                                        }
+                                    }}
+                                    style={{
+                                        transformOrigin: 'center center'
                                     }}
                                 >
                                     <div className="w-full h-full bg-gradient-to-b from-blue-50 to-blue-100 rounded-[1.5rem] lg:rounded-[2rem] 2xl:rounded-[2.5rem]" />

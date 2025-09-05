@@ -82,7 +82,7 @@ const HowToPlaySection =({ id = "faq" }: { id?: string })=> {
 
     return (
         <section 
-            className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden py-8 px-4" 
+           className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-50 relative overflow-hidden py-8 px-4"
             ref={ref}
             id={id}
         >

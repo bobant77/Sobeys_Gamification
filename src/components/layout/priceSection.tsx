@@ -8,7 +8,7 @@ import { Gift, Trophy, Star, Crown, Coins } from 'lucide-react';
 const PrizesSection = ({ id = "faq" }: { id?: string }) => {
     const [hoveredPrize, setHoveredPrize] = useState<number | null>(null);
     const sectionRef = useRef<HTMLElement>(null);
-    const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+    const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
 
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
@@ -77,27 +77,24 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
         }
     };
 
-    const itemVariants = {
-        hidden: {
-            opacity: 0,
-            y: 60,
-            rotateX: -15,
-            scale: 0.9
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            scale: 1,
-            transition: {
-                type: "spring" as const,
-                damping: 20,
-                stiffness: 100,
-                duration: 0.8
-            }
+const itemVariants = {
+    hidden: {
+        opacity: 0,
+        y: 30,
+        scale: 0.95
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: {
+            type: "spring" as const,
+            damping: 25,
+            stiffness: 120,
+            duration: 0.6
         }
-    };
-
+    }
+};
     const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
         if (!sectionRef.current) return;
 
@@ -113,8 +110,10 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
         <section
             ref={sectionRef}
             id={id}
-            className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50/50 to-orange-50/30 py-6 sm:py-8 lg:py-16
-     relative overflow-hidden"
+            className="min-h-screen py-6 sm:py-8 lg:py-16 relative overflow-hidden"
+            style={{
+                background: 'radial-gradient(ellipse at center, rgb(248 250 252) 0%, rgb(241 245 249) 100%)'
+            }}
             onMouseMove={handleMouseMove}
         >
             {/* Animated Background Elements */}
@@ -201,10 +200,10 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
                                 <div className="relative h-full">
                                     {/* Glow Effect */}
                                     <motion.div
-                                        className={`absolute -inset-1 bg-gradient-to-r ${prize.gradient} rounded-3xl blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
+                                        className={`absolute -inset-1 bg-gradient-to-r ${prize.gradient} rounded-3xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500`}
                                         animate={hoveredPrize === prize.id ? {
                                             scale: [1, 1.1, 1],
-                                            opacity: [0.3, 0.5, 0.3]
+                                            opacity: [0.4, 0.6, 0.4]
                                         } : {}}
                                         transition={{ duration: 2, repeat: Infinity }}
                                     />
