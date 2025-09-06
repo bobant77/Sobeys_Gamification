@@ -229,7 +229,7 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
                                 <span className="text-base lg:text-lg relative z-10">Start Playing</span>
                             </motion.button>
                             <motion.button
-                                className="group relative bg-transparent border-2 border-yellow-600 text-white hover:text-orange px-6 py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 rounded-2xl font-bold text-base lg:text-lg 2xl:text-xl overflow-hidden"
+                                className="group relative bg-transparent border-2 border-white text-white hover:bg-white hover:text-green-600 px-6 py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 rounded-2xl font-bold text-base lg:text-lg 2xl:text-xl overflow-hidden transition-colors duration-300"
                                 whileHover={{
                                     scale: 1.05,
                                 }}
@@ -237,11 +237,11 @@ const HeroSection = ({ id = "faq" }: { id?: string }) => {
                                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                             >
                                 <motion.div
-                                    className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-900"
+                                    className="absolute inset-0 bg-white"
                                     initial={{ opacity: 0 }}
                                     whileHover={{ opacity: 1 }}
                                 />
-                                <div className="flex items-center space-x-2 lg:space-x-3 2xl:space-x-4 relative z-10">
+                                <div className="flex items-center justify-center space-x-2 lg:space-x-3 2xl:space-x-4 relative z-10">
                                     <motion.div
                                         animate={{
                                             y: [0, -5, 0],
