@@ -2,10 +2,9 @@
 
 import React, { useState, useRef } from 'react';
 import { motion, useInView, useMotionValue } from 'framer-motion';
+import { Gift, Trophy, Star, Crown, Coins, Sparkles } from 'lucide-react';
 
-import { Gift, Trophy, Star, Crown, Coins } from 'lucide-react';
-
-const PrizesSection = ({ id = "faq" }: { id?: string }) => {
+const PrizesSection = ({ id = "prizes" }: { id?: string }) => {
     const [hoveredPrize, setHoveredPrize] = useState<number | null>(null);
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
@@ -105,20 +104,21 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
         <section
             ref={sectionRef}
             id={id}
-            className="py-8 sm:py-12 lg:py-20 relative overflow-hidden flex items-center justify-center"
+            className="py-16 lg:py-2 relative overflow-hidden flex items-center justify-center min-h-screen"
             style={{
                 background: 'radial-gradient(ellipse at center, rgb(248 250 252) 0%, rgb(241 245 249) 100%)',
-                minHeight: '100vh'
             }}
             onMouseMove={handleMouseMove}
         >
-            {/* Animated Background Elements */}
+            {/* Enhanced Animated Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div
-                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-green-400/10 to-emerald-400/10 rounded-full blur-3xl "
+                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-green-400/10 to-emerald-400/10 rounded-full blur-3xl"
                     animate={{
                         scale: [1, 1.2, 1],
                         rotate: [0, 180, 360],
+                        x: [0, 50, 0],
+                        y: [0, -30, 0]
                     }}
                     transition={{
                         duration: 20,
@@ -127,10 +127,12 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
                     }}
                 />
                 <motion.div
-                    className="absolute top-3/4 right-1/4 w-80 h-80 bg-gradient-to-r from-emerald-400/10 to-green-400/10 rounded-full blur-3xl"
+                    className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-emerald-400/10 to-green-400/10 rounded-full blur-3xl"
                     animate={{
                         scale: [1.2, 1, 1.2],
                         rotate: [360, 180, 0],
+                        x: [0, -40, 0],
+                        y: [0, 30, 0]
                     }}
                     transition={{
                         duration: 25,
@@ -138,30 +140,58 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
                         ease: "linear"
                     }}
                 />
+
+                {/* Floating particles */}
+                {[...Array(15)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute w-2 h-2 rounded-full bg-emerald-400/30"
+                        initial={{
+                            x: (i * 7) % 100 + 'vw',
+                            y: (i * 11) % 100 + 'vh',
+                        }}
+                        animate={{
+                            y: [0, -20, 0],
+                            x: [0, 15, 0],
+                            scale: [0, 1, 0],
+                        }}
+                        transition={{
+                            duration: 10 + (i % 5) * 2,
+                            repeat: Infinity,
+                            delay: i * 0.3,
+                        }}
+                    />
+                ))}
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-                {/* Header Section */}
+                {/* Enhanced Header Section */}
                 <motion.div
-                    className="text-center mb-8 sm:mb-12 lg:mb-16"
+                    className="text-center mb-16 lg:mb-15"
                     initial={{ opacity: 0, y: -50 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                 >
+                    <div className="inline-flex items-center justify-center mb-4">
+                        <Sparkles className="w-8 h-8 text-emerald-500 mr-3" />
+                        <span className="text-lg font-semibold text-emerald-600">GiveAway</span>
+                        <Sparkles className="w-8 h-8 text-emerald-500 ml-3" />
+                    </div>
+
                     <motion.h2
-                        className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6"
+                        className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5"
                     >
                         <span className="bg-gradient-to-r from-gray-900 via-green-900 to-emerald-900 bg-clip-text text-transparent">
-                            What can you
+                            Incredible Prizes
                         </span>
                         {" "}
                         <span className="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-600 bg-clip-text text-transparent">
-                            win?
+                            Await You
                         </span>
                     </motion.h2>
 
                     <motion.p
-                        className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed"
+                        className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
                         initial={{ opacity: 0 }}
                         animate={isInView ? { opacity: 1 } : {}}
                         transition={{ delay: 0.3, duration: 0.8 }}
@@ -171,9 +201,9 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
                     </motion.p>
                 </motion.div>
 
-                {/* Prizes Grid */}
+                {/* Enhanced Prizes Grid with responsive layout */}
                 <motion.div
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+                    className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
@@ -183,20 +213,20 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
                         return (
                             <motion.div
                                 key={prize.id}
-                                className="group relative"
+                                className="group relative h-full"
                                 variants={itemVariants}
                                 whileHover={{
                                     scale: 1.05,
-                                    rotateY: 5,
-                                    z: 50
+                                    y: -10,
+                                    transition: { duration: 0.3 }
                                 }}
                                 onHoverStart={() => setHoveredPrize(prize.id)}
                                 onHoverEnd={() => setHoveredPrize(null)}
                             >
-                                <div className="relative h-full">
+                                <div className="relative h-full flex flex-col">
                                     {/* Glow Effect */}
                                     <motion.div
-                                        className={`absolute -inset-1 bg-gradient-to-r ${prize.gradient} rounded-2xl lg:rounded-3xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500`}
+                                        className={`absolute -inset-2 bg-gradient-to-r ${prize.gradient} rounded-2xl lg:rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`}
                                         animate={hoveredPrize === prize.id ? {
                                             scale: [1, 1.1, 1],
                                             opacity: [0.4, 0.6, 0.4]
@@ -205,15 +235,10 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
                                     />
 
                                     {/* Main Card */}
-                                    <div
-                                        className="relative bg-white/90 backdrop-blur-xl rounded-xl lg:rounded-2xl p-4 sm:p-5 lg:p-6 h-full border border-white/20 shadow-xl overflow-hidden transition-all duration-500 group-hover:shadow-2xl"
-                                        style={{
-                                            minHeight: '240px'
-                                        }}
-                                    >
+                                    <div className="relative bg-white/90 backdrop-blur-xl rounded-xl lg:rounded-2xl p-6 lg:p-8 h-full border border-white/20 shadow-xl overflow-hidden transition-all duration-500 group-hover:shadow-2xl flex flex-col">
                                         {/* Floating Elements */}
                                         <motion.div
-                                            className="absolute top-3 right-3 lg:top-4 lg:right-4 opacity-10"
+                                            className="absolute top-4 right-4 opacity-10"
                                             animate={{
                                                 rotate: [0, 360],
                                                 scale: [1, 1.1, 1]
@@ -224,19 +249,19 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
                                                 ease: "linear"
                                             }}
                                         >
-                                            <Trophy className="w-6 h-6 lg:w-8 lg:h-8" />
+                                            <Trophy className="w-8 h-8 lg:w-10 lg:h-10" />
                                         </motion.div>
 
                                         {/* Icon Container */}
                                         <motion.div
-                                            className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-r ${prize.gradient} rounded-xl lg:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 relative overflow-hidden group-hover:shadow-lg ${prize.glowColor}`}
+                                            className={`w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-r ${prize.gradient} rounded-2xl flex items-center justify-center mb-6 relative overflow-hidden group-hover:shadow-lg ${prize.glowColor} self-start`}
                                             whileHover={{
                                                 rotate: [0, -10, 10, 0],
                                                 scale: 1.1
                                             }}
                                             transition={{ duration: 0.5 }}
                                         >
-                                            <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
+                                            <IconComponent className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
                                             <motion.div
                                                 className="absolute inset-0 bg-white/20 rounded-full"
                                                 animate={{
@@ -252,20 +277,20 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
                                         </motion.div>
 
                                         {/* Content */}
-                                        <div className="relative z-10">
+                                        <div className="relative z-10 flex flex-col flex-grow">
                                             <motion.div
-                                                className="mb-2"
+                                                className="mb-4"
                                                 initial={{ opacity: 0, x: -20 }}
                                                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                                                 transition={{ delay: 0.5 + index * 0.1 }}
                                             >
-                                                <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${prize.gradient} text-white shadow-sm`}>
+                                                <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${prize.gradient} text-white shadow-sm`}>
                                                     {prize.quantity}
                                                 </div>
                                             </motion.div>
 
                                             <motion.h3
-                                                className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-1 leading-tight"
+                                                className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight"
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                                 transition={{ delay: 0.6 + index * 0.1 }}
@@ -274,7 +299,7 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
                                             </motion.h3>
 
                                             <motion.p
-                                                className="text-sm text-gray-600 mb-2 sm:mb-3"
+                                                className="text-sm text-gray-600 mb-4"
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                                 transition={{ delay: 0.7 + index * 0.1 }}
@@ -282,23 +307,25 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
                                                 {prize.subtitle}
                                             </motion.p>
 
-                                            <motion.div
-                                                className={`text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r ${prize.gradient} bg-clip-text text-transparent mb-2`}
-                                                initial={{ opacity: 0, scale: 0.8 }}
-                                                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                                                transition={{ delay: 0.8 + index * 0.1, type: "spring" }}
-                                            >
-                                                {prize.value}
-                                            </motion.div>
+                                            <div className="mt-auto">
+                                                <motion.div
+                                                    className={`text-2xl lg:text-3xl font-bold bg-gradient-to-r ${prize.gradient} bg-clip-text text-transparent mb-4`}
+                                                    initial={{ opacity: 0, scale: 0.8 }}
+                                                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                                                    transition={{ delay: 0.8 + index * 0.1, type: "spring" }}
+                                                >
+                                                    {prize.value}
+                                                </motion.div>
 
-                                            <motion.p
-                                                className="text-xs sm:text-sm text-gray-500 leading-relaxed"
-                                                initial={{ opacity: 0 }}
-                                                animate={isInView ? { opacity: 1 } : {}}
-                                                transition={{ delay: 0.9 + index * 0.1 }}
-                                            >
-                                                {prize.description}
-                                            </motion.p>
+                                                <motion.p
+                                                    className="text-sm text-gray-500 leading-relaxed border-t border-gray-100 pt-4"
+                                                    initial={{ opacity: 0 }}
+                                                    animate={isInView ? { opacity: 1 } : {}}
+                                                    transition={{ delay: 0.9 + index * 0.1 }}
+                                                >
+                                                    {prize.description}
+                                                </motion.p>
+                                            </div>
                                         </div>
 
                                         {/* Hover Overlay */}
@@ -312,6 +339,7 @@ const PrizesSection = ({ id = "faq" }: { id?: string }) => {
                         );
                     })}
                 </motion.div>
+
             </div>
         </section>
     );
